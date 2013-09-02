@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>ToDo List</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	 <script src="i18n/angular-locale_ru-RU.js"></script>
+	<script type="text/javascript" src="controllers.js"></script>
+</head>
+<body ng-controller="TasksCtrl">
+<input type="text" ng-model="newTask"/>
+<input type="button" value="Add" ng-click="AddTask(newTask)"/>
+<ol>
+	<li ng-repeat="(id,task) in tasks.TaskList">
+		<span>{{task['text']}}</span>
+		<span>{{task['date'] | date:'dd.MM.yyyy HH:mm'}}</span>
+		<button ng-click="EditTask(task['id'])">Edit</button>
+		<button ng-click="DeleteTask(task['id'])">x</button>
+	</li>
+</ol>
+<form id = "editForm" style="visibility: {{editFormVisible}}">
+<input type="text" ng-model="editTaskField['text']"/>
+<button ng-click="SaveTaskChanges(editTaskField)">Ok</button>
+</form>
+</body>
+</html>
